@@ -34,20 +34,23 @@ SELECT * FROM PERSON
 WHERE date_of_birth < 1990-08-07
 
 4) Write a query to select all rows from person that have a hire_date in the past 100 days.
-SELECT * FROM PERSONN
+SELECT * FROM PERSON
 WHERE DATEDIFF(hire_date,CURRENT_TIMESTAMP) BETWEEN 0 AND 100
 
 5) Write a query to select rows from person that also have a row in address with address_type = 'HOME'.
 
-SELECT * FROM PERSON
+SELECT * FROM ADDRESS
+FULL OUTER JOIN PERSON
 WHERE address_type='HOME'
 
 6) Write a query to select all rows from person and only those rows from address that have a matching billing address (address_type = 'BILL').  If a matching billing address does not exist, display 'NONE' in the address_type column.
+SELECT * FROM ADDRESS
 
 
 
 7)  Write a query to count the number of addresses per address type.
-    
+    SELECT address_type, COUNT(*) FROM ADDRESS
+    TABLE GROUP BY address_type
 
 8)  Write a query to select data in the following format:
 
