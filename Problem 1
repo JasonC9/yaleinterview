@@ -21,38 +21,39 @@ FK  person_id             NUMBER(10)    NOT NULL
 1) Write a query to select all rows from person.  If the person row has a value in preferred_first_name, select the preferred name instead of the value in first name.  Alias the column as REPORTING_NAME.
 
 SELECT personid,last_name,date_of_birth,hire_date,occupation IF(preferred_first_name!=NULL,preffered_first_name,first_name)
-FROM PERSON 
+FROM PERSON ;
 
 
 
 2) Write a query to select all rows from person that have a NULL occupation.
 SELECT * FROM PERSON WHERE 
-OCCUPATION IS NULL
+OCCUPATION IS NULL;
 
 3) Write a query to select all rows from person that have a date_of_birth before August 7th, 1990.             
 
 SELECT * FROM PERSON
-WHERE date_of_birth < 1990-08-07
+WHERE date_of_birth < 1990-08-07;
 
 4) Write a query to select all rows from person that have a hire_date in the past 100 days.
 SELECT * FROM PERSON
-WHERE DATEDIFF(hire_date,CURRENT_TIMESTAMP) BETWEEN 0 AND 100
+WHERE DATEDIFF(hire_date,CURRENT_TIMESTAMP) BETWEEN 0 AND 100;
 
 5) Write a query to select rows from person that also have a row in address with address_type = 'HOME'.
 
 SELECT * FROM ADDRESS
 FULL OUTER JOIN PERSON
-WHERE address_type='HOME'
+WHERE address_type='HOME';
 
 6) Write a query to select all rows from person and only those rows from address that have a matching billing address (address_type = 'BILL').  If a matching billing address does not exist, display 'NONE' in the address_type column.
 SELECT * IF(address_type='BILL',address_type,NONE)
-FROM ADDRESS
+FROM ADDRESS;
 
 
 
 7)  Write a query to count the number of addresses per address type.
+
     SELECT address_type, COUNT(*) FROM ADDRESS
-    TABLE GROUP BY address_type
+    TABLE GROUP BY address_type;
 
 8)  Write a query to select data in the following format:
 
@@ -64,7 +65,10 @@ FROM ADDRESS
 	
 SELECT p.last_name,a.home_address,a.billing_address
 INTO #temptable
-FROM PERSON p, ADDRESS a
+FROM PERSON p, ADDRESS a;
 
 9) Write a query to update the person.occupation column to ‘X’ for all rows that have a ‘BILL’ address in the address table.
+UPDATE PERSON, ADDRESS
+SET occupation='X'
+WHERE address_type=''BILL;
 
