@@ -20,7 +20,8 @@ FK  person_id             NUMBER(10)    NOT NULL
 
 1) Write a query to select all rows from person.  If the person row has a value in preferred_first_name, select the preferred name instead of the value in first name.  Alias the column as REPORTING_NAME.
 
-SELECT *
+SELECT personid,last_name,date_of_birth,hire_date,occupation IF(preferred_first_name!=NULL,preffered_first_name,first_name)
+FROM PERSON 
 
 
 
@@ -44,7 +45,8 @@ FULL OUTER JOIN PERSON
 WHERE address_type='HOME'
 
 6) Write a query to select all rows from person and only those rows from address that have a matching billing address (address_type = 'BILL').  If a matching billing address does not exist, display 'NONE' in the address_type column.
-SELECT * FROM ADDRESS
+SELECT * IF(address_type='BILL',address_type,NONE)
+FROM ADDRESS
 
 
 
@@ -54,10 +56,15 @@ SELECT * FROM ADDRESS
 
 8)  Write a query to select data in the following format:
 
-
 	last_name           home_address                          billing_address
 	------------------  ------------------------------------  ---------------------------------------
 	Smith               89 Lyon Circle, Clifton, VA 12345     25 Science Park, New Haven, CT 06511
 	Jones               212 Maple Ave, Manassas, VA 22033     275 Winchester Ave, New Haven, CT 06511
+	
+	
+SELECT p.last_name,a.home_address,a.billing_address
+INTO #temptable
+FROM PERSON p, ADDRESS a
 
 9) Write a query to update the person.occupation column to ‘X’ for all rows that have a ‘BILL’ address in the address table.
+
